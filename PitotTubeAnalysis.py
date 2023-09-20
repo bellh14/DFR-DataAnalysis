@@ -4,9 +4,10 @@ import plotly.express as px
 
 class PitotTubeAnalysis:
 
-    def __init__(self):
+    def __init__(self, file_name: str, folder_name: str):
 
-        self.file_name = "cleaned_run1_data_v3.csv"
+        self.folder_name = folder_name
+        self.file_name = file_name
         self.data = self.load_data()
         # self.clean_data()
         # self.print_corr()
@@ -14,7 +15,7 @@ class PitotTubeAnalysis:
 
     def load_data(self):
 
-        data = pd.DataFrame(pd.read_csv(self.file_name))
+        data = pd.DataFrame(pd.read_csv(f"{self.folder}/{self.file_name}"))
 
         return data
 
@@ -58,7 +59,7 @@ class PitotTubeAnalysis:
 
             previous_pressure = row["Pressure"]
 
-        self.data.to_csv("cleaned_run1_data_v3.csv", index=False)
+        self.data.to_csv(f"{self.folder_name}/{self.file_name}", index=False)
 
     def remove_probable_outliers(self):
 
@@ -82,4 +83,4 @@ class PitotTubeAnalysis:
 
 
 if __name__ == "__main__":
-    PitotTubeAnalysis()
+    PitotTubeAnalysis("cleaned_run1_data_v3.csv", "pitot_tube_data")

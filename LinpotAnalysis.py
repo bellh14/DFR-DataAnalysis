@@ -1,6 +1,7 @@
 import pandas as pd
 import plotly.express as px
 import time
+from sklearn.cluster import KMeans
 
 
 class LinpotAnalysis:
@@ -20,14 +21,19 @@ class LinpotAnalysis:
         for i, row in self.data.iterrows():
             time_step = row['Time']
             mlsec = repr(time_step).split('.')[1][:3]
-            self.data.loc[i, 'Time'] = time.strftime("%Y-%m-%d %H:%M:%S.{} %Z".format(mlsec), time.localtime(time_step))
+            self.data.loc[i, 'Time'] = time.strftime("%H:%M:%S.{} %Z".format(mlsec), time.localtime(time_step))
 
     def plot(self):
         fig = px.line(self.data, x='Time', y=['Front Right', 'Front Left',
-                                              'Rear Right', 'Rear Left'])
-        fig.update_layout(title='Linear Potentiometer Data', yaxis_title='mm', xaxis_title='Time')
+                                              'Rear Right', 'Rear Left'], color_discrete_sequence=px.colors.qualitative.Vivid)
+        fig.update_layout(title='Linear Potentiometer Data', yaxis_title='mm', xaxis_title='Time', height=1080, width=1920)
         fig.show()
+        fig.write_image("saturday_linpot.png")
 
+    def cluster(self):
+        kmeans = KMeans(n_clusters=20)
+        predictions = kmeans.fit(self.data)
+        
 
 if __name__ == '__main__':
     linpot = LinpotAnalysis('output1_linpot_4.csv')

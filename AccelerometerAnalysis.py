@@ -40,7 +40,7 @@ class AccelerometerAnalaysis:
             width=1920,
         )
         fig.show()
-        # fig.write_image(f"10-14/accelerometer_{title}.png")
+        fig.write_image(f"10-14/accelerometer_{title}.png")
 
 
 if __name__ == "__main__":

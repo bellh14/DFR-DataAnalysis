@@ -39,16 +39,16 @@ class LinpotAnalysis:
             width=1920,
         )
         fig.show()
-        # fig.write_image(f"10-14/linpot_{title}.png")
+        fig.write_image(f"10-14/linpot_{title}.png")
 
 
 if __name__ == "__main__":
     linpot = LinpotAnalysis(
-        "output2_linpot_2023-10-14_17-12-10.csv",
+        "output2_linpot_2023-10-14_13-23-28.csv",
     )
     linpot.convert_voltage_to_mm()
     linpot.convert_time(linpot.data)
-    linpot.plot("150_Run_1")
+    linpot.plot("200_Run_1")
 
     # linpot = LinpotAnalysis(
     #     "output2_linpot_2023-10-14_17-15-24.csv",

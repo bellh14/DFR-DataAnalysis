@@ -36,12 +36,27 @@ class LinpotAnalysis:
         self.data = Filter.butter_lowpass_filter(self.data, "Rear Left", 4, 30, 2)
 
     def plot(self, title: str = None):
-        # fig = px.line(
-        #     self.data,
-        #     x="Time",
-        #     y=["Front Right", "Front Left", "Rear Right", "Rear Left"],
-        #     color_discrete_sequence=px.colors.qualitative.Vivid,
-        # )
+        fig = px.line(
+            self.data,
+            x="Time",
+            y=["Front Right", "Front Left", "Rear Right", "Rear Left"],
+            color_discrete_sequence=px.colors.qualitative.Vivid,
+        )
+        fig.show()
+
+        fig = px.line(
+            self.data,
+            x="Time",
+            y=[
+                "Front Right_lowpass",
+                "Front Left_lowpass",
+                "Rear Right_lowpass",
+                "Rear Left_lowpass",
+            ],
+            color_discrete_sequence=px.colors.qualitative.Vivid,
+        )
+        fig.show()
+
         fig = px.line(
             self.data,
             x="Time",
@@ -71,7 +86,7 @@ class LinpotAnalysis:
 
 if __name__ == "__main__":
     linpot = LinpotAnalysis(
-        "output2_linpot_2023-10-14_15-28-30.csv",
+        "output2_linpot_2023-10-14_17-17-54.csv",
     )
     linpot.convert_voltage_to_mm()
     linpot.convert_time(linpot.data)

@@ -15,8 +15,8 @@ def plot_ride_heights():
     ride_height_combinations = pd.DataFrame(
         columns=["FRH", "RRH", "Chassis Angle", "Chassis Heave"]
     )
-    num_heaves = 500
-    num_angles = 500
+    num_heaves = 8
+    num_angles = 8
     inches_to_meters = 0.0254
     meters_to_inches = 39.37008
     heave_min = -1.2 * inches_to_meters
@@ -49,8 +49,8 @@ def plot_ride_heights():
             ride_height_combinations.loc[iteration, "RRH"] = rrh
             iteration += 1
     # print(ride_height_combinations)
-    fig = px.scatter(ride_height_combinations, x="FRH", y="RRH")
-    fig.show()
+    # fig = px.scatter(ride_height_combinations, x="FRH", y="RRH")
+    # fig.show()
     ride_height_combinations.to_csv("Ride_Heights.csv", index=False)
     return ride_height_combinations
 

@@ -42,6 +42,15 @@ class LinpotAnalysis:
             y=["Front Right", "Front Left", "Rear Right", "Rear Left"],
             color_discrete_sequence=px.colors.qualitative.Vivid,
         )
+
+        fig.update_layout(
+            title=f"Linear Potentiometer Data {title}",
+            yaxis_title="mm",
+            xaxis_title="Time",
+            height=1080,
+            width=1920,
+        )
+        
         fig.show()
 
         fig = px.line(
@@ -57,21 +66,6 @@ class LinpotAnalysis:
         )
         fig.show()
 
-        fig = px.line(
-            self.data,
-            x="Time",
-            y=[
-                "Front Right",
-                "Front Right_lowpass",
-                "Front Left",
-                "Front Left_lowpass",
-                "Rear Right",
-                "Rear Right_lowpass",
-                "Rear Left",
-                "Rear Left_lowpass",
-            ],
-            color_discrete_sequence=px.colors.qualitative.Vivid,
-        )
 
         fig.update_layout(
             title=f"Linear Potentiometer Data {title}",
@@ -86,12 +80,20 @@ class LinpotAnalysis:
 
 if __name__ == "__main__":
     linpot = LinpotAnalysis(
-        "output2_linpot_2023-10-14_17-17-54.csv",
+        "test_linpots/fully_compressed.csv",
     )
     linpot.convert_voltage_to_mm()
     linpot.convert_time(linpot.data)
     linpot.clean_data()
-    linpot.plot("150_Run_3")
+    linpot.plot("Full Compression")
+
+    linpot = LinpotAnalysis(
+        "test_linpots/on_car.csv",
+    )
+    linpot.convert_voltage_to_mm()
+    linpot.convert_time(linpot.data)
+    linpot.clean_data()
+    linpot.plot("On Car")
 
     # linpot = LinpotAnalysis(
     #     "output2_linpot_2023-10-14_17-15-24.csv",

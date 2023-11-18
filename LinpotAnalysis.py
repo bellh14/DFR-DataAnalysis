@@ -49,33 +49,83 @@ class LinpotAnalysis:
         fig = px.line(
             self.data,
             x="Time",
-            y=[
-                "Front Right_lowpass",
-                "Front Left_lowpass",
-                "Rear Right_lowpass",
-                "Rear Left_lowpass",
-            ],
+            # y=[
+            #     "Front Right_lowpass",
+            #     "Front Left_lowpass",
+            #     "Rear Right_lowpass",
+            #     "Rear Left_lowpass",
+            # ],
+            y=["Front Right", "Front Left", "Rear Right", "Rear Left"],
             color_discrete_sequence=px.colors.qualitative.Vivid,
         )
 
         fig.update_layout(
-            title=f"Filtered Linear Potentiometer Data {title}",
+            title=f"Linear Potentiometer Data {title}",
             yaxis_title="mm",
             xaxis_title="Time",
             height=1080,
             width=1920,
         )
         # fig.show()
-        fig.write_image(f"10-18/linpot_{title}.png")
+        fig.write_image(f"10-18/Unfiltered/linpot_{title}.png")
 
 
 if __name__ == "__main__":
+    linpot = LinpotAnalysis(
+        "LinPot-Processed/output2_linpot_2023-11-17_15-57-58-warm.csv",
+    )
+    linpot.convert_voltage_to_mm()
+    linpot.convert_time(linpot.data)
+    # linpot.clean_data()
+    linpot.plot("Run Warm")
+
+    linpot = LinpotAnalysis(
+        "LinPot-Processed/output2_linpot_2023-11-17_16-00-28-run1.csv",
+    )
+    linpot.convert_voltage_to_mm()
+    linpot.convert_time(linpot.data)
+    # linpot.clean_data()
+    linpot.plot("Run 1")
+
+    linpot = LinpotAnalysis(
+        "LinPot-Processed/output2_linpot_2023-11-17_16-03-07-run2.csv",
+    )
+    linpot.convert_voltage_to_mm()
+    linpot.convert_time(linpot.data)
+    # linpot.clean_data()
+    linpot.plot("Run 2")
+
+    linpot = LinpotAnalysis(
+        "LinPot-Processed/output2_linpot_2023-11-17_16-09-26-run3.csv",
+    )
+    linpot.convert_voltage_to_mm()
+    linpot.convert_time(linpot.data)
+    # linpot.clean_data()
+    linpot.plot("Run 3")
+
+    linpot = LinpotAnalysis(
+        "LinPot-Processed/output2_linpot_2023-11-17_16-12-19-run4.csv",
+    )
+    linpot.convert_voltage_to_mm()
+    linpot.convert_time(linpot.data)
+    # linpot.clean_data()
+    linpot.plot("Run 4")
+
+    linpot = LinpotAnalysis(
+        "LinPot-Processed/output2_linpot_2023-11-17_16-14-15-run5.csv",
+    )
+    linpot.convert_voltage_to_mm()
+    linpot.convert_time(linpot.data)
+    # linpot.clean_data()
+    linpot.plot("Run 5")
+
+
     linpot = LinpotAnalysis(
         "LinPot-Processed/output2_linpot_2023-11-17_14-53-29.csv",
     )
     linpot.convert_voltage_to_mm()
     linpot.convert_time(linpot.data)
-    linpot.clean_data()
+    # linpot.clean_data()
     linpot.plot("Run 6")
 
     linpot = LinpotAnalysis(
@@ -83,7 +133,7 @@ if __name__ == "__main__":
     )
     linpot.convert_voltage_to_mm()
     linpot.convert_time(linpot.data)
-    linpot.clean_data()
+    # linpot.clean_data()
     linpot.plot("Run 7")
 
     linpot = LinpotAnalysis(
@@ -91,7 +141,7 @@ if __name__ == "__main__":
     )
     linpot.convert_voltage_to_mm()
     linpot.convert_time(linpot.data)
-    linpot.clean_data()
+    # linpot.clean_data()
     linpot.plot("Run 8")
 
     linpot = LinpotAnalysis(
@@ -99,7 +149,7 @@ if __name__ == "__main__":
     )
     linpot.convert_voltage_to_mm()
     linpot.convert_time(linpot.data)
-    linpot.clean_data()
+    # linpot.clean_data()
     linpot.plot("Run 9")
 
     linpot = LinpotAnalysis(
@@ -107,7 +157,7 @@ if __name__ == "__main__":
     )
     linpot.convert_voltage_to_mm()
     linpot.convert_time(linpot.data)
-    linpot.clean_data()
+    # linpot.clean_data()
     linpot.plot("Run 10")
 
     linpot = LinpotAnalysis(
@@ -115,7 +165,7 @@ if __name__ == "__main__":
     )
     linpot.convert_voltage_to_mm()
     linpot.convert_time(linpot.data)
-    linpot.clean_data()
+    # linpot.clean_data()
     linpot.plot("Run 11")
 
     linpot = LinpotAnalysis(
@@ -123,5 +173,5 @@ if __name__ == "__main__":
     )
     linpot.convert_voltage_to_mm()
     linpot.convert_time(linpot.data)
-    linpot.clean_data()
+    # linpot.clean_data()
     linpot.plot("Run 12")
